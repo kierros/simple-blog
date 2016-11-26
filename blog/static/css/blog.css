@@ -53,3 +53,11 @@
     .post h1 a, .post h1 a:visited {
         color: #000000;
     }
+
+    input[type=submit] {
+    border: 1px solid #f44c0e;
+    color: #fff;
+    background: tomato;
+    padding: 5px 20px;
+    border-radius: 3px;
+}

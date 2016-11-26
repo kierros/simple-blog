@@ -14,10 +14,14 @@
             {% endif %}
 
             <h1>{{ post.title }}</h1>
+            {% if user.is_authenticated %}
             <div class="edit">
               <a class="btn btn-link" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
               <a class="btn btn-link" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
             </div>
+            {% else %}
+              <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            {% endif %}
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endblock %}
