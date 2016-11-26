@@ -6,17 +6,12 @@
             <div>
                 <h1><a href="">The Blog of W.</a></h1>
             </div>
-
-            <div>
-                <h2><a href="">My first post</a></h2>
-                <p>I know I'm afraid, I know I'm afraid, I'm drunk I'm tired, and the city I walk in, the city I walk in, it feels like it swallows, with my hand in my pocket, I feel like a shadow, I feel like a shadow.</p>
-                <p>published: 26.11.2016 19:10</p>
-            </div>
-
-            <div>
-                <h2><a href="">My second post</a></h2>
-                <p>Let's go buy beer and pizza!!!</p>
-                <p>published: 26.11.2016 19:12</p>
-            </div>
+            {% for post in posts %}
+              <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+              </div>
+            {% endfor %}
         </body>
     </html>
