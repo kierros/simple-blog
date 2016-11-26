@@ -23,6 +23,11 @@
         color: #828282;
     }
 
+    .edit {
+        float: right;
+        color: #828282;
+    }
+
     .save {
         float: right;
     }
