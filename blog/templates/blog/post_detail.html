@@ -22,6 +22,9 @@
             {% else %}
               <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
+            <div class="author">
+              <p> {{post.author}} </p>
+            </div>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endblock %}

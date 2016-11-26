@@ -23,6 +23,12 @@
         color: #828282;
     }
 
+    .author {
+        font-family: 'Homemade Apple', cursive;
+        color: #828282;
+        font-size: 14pt;
+    }
+
     .edit {
         float: right;
     }
