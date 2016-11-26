@@ -37,17 +37,20 @@
 
     .post-form textarea, .post-form input {
         width: 100%;
+        font-family: 'Inconsolata', monospace;
     }
 
     .top-menu, .top-menu:hover, .top-menu:visited {
         color: #ffffff;
         float: right;
-        font-size: 26pt;
+        font-size: 20pt;
         margin-right: 20px;
+        font-family: 'Inconsolata', monospace;
     }
 
     .post {
         margin-bottom: 70px;
+        font-family: 'Inconsolata', monospace;
     }
 
     .post h1 a, .post h1 a:visited {
