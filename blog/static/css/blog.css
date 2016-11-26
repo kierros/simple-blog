@@ -25,7 +25,10 @@
 
     .edit {
         float: right;
-        color: #828282;
+    }
+
+    .publish {
+      float: right;
     }
 
     .save {
