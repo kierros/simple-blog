@@ -13,7 +13,7 @@
             {% if user.is_authenticated %}
             <div class="edit">
               <a class="btn btn-link" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-              <a class="btn btn-link" ><span class="glyphicon glyphicon-remove"></span> Delete</a>
+              <a class="btn btn-link" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
             </div>
             {% endif %}
             <p>{{ post.text|linebreaksbr }}</p>
