@@ -94,11 +94,6 @@ def handler404(request):
     response.status_code = 404
     return response
 
-def handler400(request):
-    response = render_to_response('400.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 400
-    return response
 
 def handler500(request):
     response = render_to_response('500.html', {},
