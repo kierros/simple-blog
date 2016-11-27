@@ -14,7 +14,11 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return render_to_response('blog/error_404.html')
+    #post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 @login_required
@@ -32,7 +36,11 @@ def post_new(request):
 
 @login_required
 def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    #post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return render_to_response('blog/error_404.html')
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -51,18 +59,30 @@ def post_draft_list(request):
 
 @login_required
 def post_publish(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    #post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return render_to_response('blog/error_404.html')
     post.publish()
     return redirect('post_detail', pk=pk)
 
 @login_required
 def post_remove(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    #post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return render_to_response('blog/error_404.html')
     post.delete()
     return redirect('post_list')
 
 def add_comment_to_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    #post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return render_to_response('blog/error_404.html')
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -86,14 +106,3 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('post_detail', pk=post_pk)
-
-# HTTP Error 404
-def page_not_found(request):
-    response = render_to_response(
-        '404.html',
-        context_instance=RequestContext(request)
-    )
-
-    response.status_code = 404
-
-    return response
