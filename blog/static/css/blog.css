@@ -64,7 +64,8 @@
     }
 
     .comment {
-    margin: 20px 0px 20px 20px;
+      margin: 20px 0px 20px 20px;
+      font-family: 'Inconsolata', monospace;
     }
 
     input[type=submit] {
