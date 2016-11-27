@@ -2,9 +2,10 @@ from django import forms
 from .models import Post, Comment
 
 class PostForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
     class Meta:
         model = Post
-        fields = ('title', 'text',)
+        fields = ('title', 'text', 'image')
 
 class CommentForm(forms.ModelForm):
 

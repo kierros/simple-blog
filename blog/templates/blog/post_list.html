@@ -10,6 +10,10 @@
                   <p> {{post.author}} </p>
                 </div>
                 <p>{{ post.text|linebreaksbr }}</p>
+                {% if post.image %}
+                <a href="#" class="thumbnail">
+                <img src="{{ post.image.url }}" alt="{{ post.image.name }}"></a>
+                {% endif %}
                 <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
             </div>
         {% endfor %}

@@ -26,6 +26,10 @@
               <p> {{post.author}} </p>
             </div>
             <p>{{ post.text|linebreaksbr }}</p>
+            {% if post.image %}
+            <a href="#" class="thumbnail">
+            <img src="{{ post.image.url }}" alt="{{ post.image.name }}"></a>
+            {% endif %}
         </div>
         <hr>
         <a class="btn btn-link" href="{% url 'add_comment_to_post' pk=post.pk %}"> <span class="glyphicon glyphicon-paperclip"></span> Add comment</a>

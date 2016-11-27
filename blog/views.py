@@ -5,6 +5,8 @@ from django.template import RequestContext
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
+from io import BytesIO
+from django.core.files.base import ContentFile
 
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
@@ -20,8 +22,9 @@ def post_detail(request, pk):
 @login_required
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            #handle_uploaded_file(request.FILES['image'])
             post = form.save(commit=False)
             post.author = request.user
             post.save()
@@ -34,7 +37,7 @@ def post_new(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -87,6 +90,11 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=post_pk)
 
+"""
+def handle_uploaded_file(f):
+    with open('documents/%Y/%m/%d', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk) """
 
 def handler404(request):
     response = render_to_response('404.html', {},
@@ -105,6 +113,7 @@ def handler500(request):
                                   context_instance=RequestContext(request))
     response.status_code = 500
     return response
+
 
 # HTTP Error 404
 '''
